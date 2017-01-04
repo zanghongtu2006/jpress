@@ -16,6 +16,8 @@
 package io.jpress.admin.controller;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -192,6 +194,18 @@ public class _ToolsController extends JBaseController {
 					content.setStatus(Content.STATUS_DRAFT);
 				} else {
 					content = null;
+				}
+			} else if ("wp:post_date".equalsIgnoreCase(qName)) {
+				if (StringUtils.isNotBlank(value) && content != null) {
+					String dateStr = value.replace("<![CDATA", "").replace("]]>", "");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date createdDate;
+					try {
+						createdDate = sdf.parse(dateStr);
+					} catch (ParseException e) {
+						createdDate = new Date();
+					}
+					content.setCreated(createdDate);
 				}
 			}
 
