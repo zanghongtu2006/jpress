@@ -186,7 +186,7 @@ public class _ToolsController extends JBaseController {
 				}
 			} else if ("wp:status".equalsIgnoreCase(qName)) {
 				// 没有发布的文章不导入，比如草稿或者垃圾箱的文章
-				if ("publish".equals(value) && content != null) {
+				if (("publish".equals(value) || "private".equals(value))&& content != null) {
 					content.setStatus(Content.STATUS_NORMAL);
 				} else if ("draft".equals(value) && content != null) {
 					content.setStatus(Content.STATUS_DRAFT);

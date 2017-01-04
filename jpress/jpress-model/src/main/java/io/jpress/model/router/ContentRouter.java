@@ -31,6 +31,7 @@ import io.jpress.utils.StringUtils;
 public class ContentRouter extends RouterConverter {
 
 	public static final String TYPE_STATIC_MODULE_SLUG = "_static_module_slug"; // 模型SLUG
+	public static final String TYPE_STATIC_MODULE_CATEGORY_SLUG = "_static_module_category_slug"; // 模型SLUG
 	public static final String TYPE_STATIC_MODULE_ID = "_static_module_id"; // 静态模型ID
 	public static final String TYPE_STATIC_DATE_SLUG = "_static_date_slug"; // 静态日期slug
 	public static final String TYPE_STATIC_DATE_ID = "_static_date_id"; // 静态日期id
@@ -38,7 +39,7 @@ public class ContentRouter extends RouterConverter {
 	public static final String TYPE_STATIC_PREFIX_ID = "_static_prefix_id"; // 静态ID
 	public static final String TYPE_DYNAMIC_ID = "_dynamic_id"; // 动态类型
 	public static final String TYPE_DYNAMIC_SLUG = "_dynamic_slug"; // 动态类型
-	
+
 	public static final String DEFAULT_TYPE = TYPE_STATIC_PREFIX_SLUG;
 
 
@@ -76,6 +77,10 @@ public class ContentRouter extends RouterConverter {
 		// 模型SLUG
 		if (TYPE_STATIC_MODULE_SLUG.equals(settingType)) {
 			return SLASH + content.getModule() + SLASH + content.getSlug();
+		}
+		// 模型类别SLUG
+		if (TYPE_STATIC_MODULE_CATEGORY_SLUG.equals(settingType)) {
+			return SLASH + category + SLASH + content.getSlug();
 		}
 		// 模型ID
 		else if (TYPE_STATIC_MODULE_ID.equals(settingType)) {
